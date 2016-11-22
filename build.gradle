@@ -1,0 +1,87 @@
+apply plugin: 'java'
+
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+
+version = '1.0'
+
+repositories {
+    maven {
+        url "http://www.mvnrepository.com/"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-tx
+    compile group: 'org.springframework', name: 'spring-tx', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-aop
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-beans
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    compile group: 'org.springframework', name: 'spring-web', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-websocket
+    compile group: 'org.springframework', name: 'spring-websocket', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-messaging
+    compile group: 'org.springframework', name: 'spring-messaging', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.2.8'
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.2'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
+    // https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    // https://mvnrepository.com/artifact/commons-pool/commons-pool
+    compile group: 'commons-pool', name: 'commons-pool', version: '1.6'
+    // https://mvnrepository.com/artifact/log4j/log4j
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.21'
+    // https://mvnrepository.com/artifact/org.freemarker/freemarker
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.20'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.1'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.1'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore
+    compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.3.2'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore-nio
+    compile group: 'org.apache.httpcomponents', name: 'httpcore-nio', version: '4.3.2'
+    // https://mvnrepository.com/artifact/wsdl4j/wsdl4j
+    compile group: 'wsdl4j', name: 'wsdl4j', version: '1.6.2'
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.12'
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20160810'
+    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '2.4.0'
+    // https://mvnrepository.com/artifact/redis.clients/jedis
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+    // https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl
+    compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12'
+    // https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.12'
+    // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
+    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.8'
+    // https://mvnrepository.com/artifact/org.springframework/spring-oxm
+    compile group: 'org.springframework', name: 'spring-oxm', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/aopalliance/aopalliance
+    compile group: 'aopalliance', name: 'aopalliance', version: '1.0'
+}
