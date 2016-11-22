@@ -103,5 +103,10 @@
     <orderEntry type="library" name="Gradle: org.apache.lucene:lucene-grouping:5.5.2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.lucene:lucene-spatial3d:5.5.2" level="project" />
     <orderEntry type="library" name="Gradle: com.spatial4j:spatial4j:0.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-taglibs:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-acl:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:3.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:3.2.5.RELEASE" level="project" />
   </component>
 </module>
