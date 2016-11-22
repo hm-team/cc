@@ -36,6 +36,8 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-websocket', version: '4.2.6.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework/spring-messaging
     compile group: 'org.springframework', name: 'spring-messaging', version: '4.2.6.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework/spring-test
+    compile group: 'org.springframework', name: 'spring-test', version: '4.2.6.RELEASE'
     // https://mvnrepository.com/artifact/org.mybatis/mybatis
     compile group: 'org.mybatis', name: 'mybatis', version: '3.2.8'
     // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
@@ -74,6 +76,8 @@ dependencies {
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '2.4.0'
     // https://mvnrepository.com/artifact/redis.clients/jedis
     compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.4.RELEASE'
     // https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl
     compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12'
     // https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl
