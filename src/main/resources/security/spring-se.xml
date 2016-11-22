@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <http auto-config='true' access-denied-page="/accessDenied.jsp">
+        <!--按照顺序进行寻找-->
+        <!--让没登陆的用户也可以访问login.jsp-->
+        <intercept-url pattern="/login.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+        <intercept-url pattern="/assets/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+        <intercept-url pattern="/public/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+        <intercept-url pattern="/ano.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <!--拥有RLE_ADMIN的用户可以访问-->
+        <intercept-url pattern="/admin.html" access="ROLE_ADMIN" />
+        <!--拥有ROLE_USER的用户可以访问-->
+        <!--IS_AUTHENTICATED_FULLY  只要是用户登录就可以访问-->
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <!--匿名登录后，显示的username-->
+        <anonymous username="游客"/>
+
+        <!--newSession会在用户登录时生成新session，但不会复制任何原有属性-->
+        <session-management session-fixation-protection="newSession"/>
+        <!--自定义登录界面-->
+        <!--authentication-failure-url表示用户登录失败后。跳转到哪个页面-->
+        <!--?error=true 添加失败后的标识-->
+        <!--default-target-url表示登陆成功时，跳转到哪个页面-->
+        <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" default-target-url="/" />
+        <session-management>
+            <concurrency-control error-if-maximum-exceeded="false" />
+        </session-management>
+
+
+    </http>
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <!--固定值
+            <user-service>
+                 <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+                 <user name="user" password="user" authorities="ROLE_USER" />
+             </user-service>
+            <password-encoder hash="md5" />-->
+            <jdbc-user-service data-source-ref="dataSource2"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <!--数据源-->
+    <beans:bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <beans:property name="url" value="jdbc:mysql://192.120.0.168:3306/test"/>
+        <beans:property name="username" value="root"/>
+        <beans:property name="password" value="123"/>
+    </beans:bean>
+
+    <!--从数据库中指定
+    users-by-username-query为根据用户名查找用户，系统通过传入的用户名查询当前用户的登录名，密码和是否被禁用这一状态。
+    authorities-by-username-query为根据用户名查找权限，系统通过传入的用户名查询当前用户已被授予的所有权限。
+    -->
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource2"
+                               users-by-username-query="select username,password,enabled as enabled
+        from users
+        where username=?"
+                               authorities-by-username-query="select u.username,r.name as authority
+        from users u
+        join user_role ur
+        on u.id=ur.user_id
+        join role r
+        on r.id=ur.role_id
+        where u.username=?"/>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

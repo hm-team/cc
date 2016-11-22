@@ -84,4 +84,9 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-oxm', version: '4.2.6.RELEASE'
     // https://mvnrepository.com/artifact/aopalliance/aopalliance
     compile group: 'aopalliance', name: 'aopalliance', version: '1.0'
+    compile group: 'org.springframework.security', name: 'spring-security-taglibs', version: '3.2.5.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '3.2.5.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-acl', version: '3.2.5.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '3.2.5.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '3.2.5.RELEASE'
 }

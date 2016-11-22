@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           ">
+
+    <context:component-scan base-package="hanmi" />
+
+
+    <mvc:annotation-driven />
+
+    <bean id="viewResolverCommon" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value=""/>
+        <property name="suffix" value=""/><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑  -->
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.InternalResourceView</value>
+        </property>
+        <property name="order" value="1"/>
+    </bean>
+
+
+    <!-- 配置内容协商视图解析 -->
+    <bean id="contentNegotiatingViewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <!--mj tl gb em xy xx ts  &lt;!&ndash; 设置内容协商管理器 &ndash;&gt;
+         <property name="contentNegotiationManager" ref="contentNegotiationManager"></property>
+         &lt;!&ndash; 设置默认视图 &ndash;&gt;
+         <property name="defaultViews">
+             <list>
+                 <ref bean="mappingJacksonJsonView" />
+                 <ref bean="marshallingView" />
+             </list>
+         </property>
+         &lt;!&ndash; 设置视图解析器 &ndash;&gt;
+         <property name="viewResolvers">
+             <list>
+                 <ref bean="defalutViewResolver" />
+             </list>
+         </property>-->
+        <property name="suffix" value=".ftl" />
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="viewClass" value="com.freemarker.util.FreeMarkerViewUtil" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="order" value="0"/>
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/views/" />
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="x,l_escape" value-ref="fmXmlEscape" />
+            </map>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">1</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="number_format">0.##########</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+    </bean>
+    <!--<bean id="defalutViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=""></property>
+    </bean>-->
+
+    <!-- JSON视图 -->
+    <bean id="mappingJacksonJsonView"
+          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <!--去除key 只返回value-->
+        <property name="extractValueFromSingleKeyModel" value="true" />
+    </bean>
+
+    <!-- XML视图 -->
+    <bean id="marshallingView"
+          class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <property name="marshaller">
+            <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="contentNegotiationManager"
+          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <props>
+                <prop key="json">application/json;charset=utf-8</prop>
+                <prop key="xml">application/xml;charset=utf-8</prop>
+                <prop key="do">application/html;charset=utf-8</prop>
+            </props>
+        </property>
+        <property name="ignoreAcceptHeader" value="true"></property>
+        <!-- 设置默认的 ContentType为application/json-->
+        <property name="defaultContentType" value="application/json"></property>
+    </bean>
+</beans>
